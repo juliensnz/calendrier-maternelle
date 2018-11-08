@@ -1,0 +1,5 @@
+display date on top [DONE]
+print button [DONE]
+select date [DONE]
+add vacations
+birthday

@@ -32,7 +32,9 @@ class Calendar extends Component<Props> {
 
     return (
       <React.Fragment>
-        {views}
+        <div className="Calendar">
+          {views}
+        </div>
       </React.Fragment>
     );
   }

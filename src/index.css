@@ -10,4 +10,8 @@ body {
     background-color: transparent;
     -webkit-print-color-adjust:exact;
   }
+
+  .no-print {
+    display: none;
+  }
 }
