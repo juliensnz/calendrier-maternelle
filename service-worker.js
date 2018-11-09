@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/preschool-calendar/precache-manifest.afcf53a35dfa538514e284feb4b1d364.js"
+  "/preschool-calendar/precache-manifest.6c4f5534e7840df4af6befe72da6e988.js"
 );
 
 workbox.clientsClaim();
