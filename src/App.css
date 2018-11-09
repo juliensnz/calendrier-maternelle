@@ -57,6 +57,7 @@
   text-align: center;
   line-height: 3cm;
   transition: background-color 0.5s ease-in-out;
+  cursor: pointer;
 }
 
 .Day:first-child {
@@ -81,8 +82,8 @@
     45deg,
     #666,
     #666 .06cm,
-    #fff .06cm,
-    #fff .12cm
+    transparent .06cm,
+    transparent .12cm
   )
 }
 

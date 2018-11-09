@@ -4,11 +4,13 @@ import Calendar from './application/component/calendar';
 import ConcreteMonth from './domain/model/month';
 import ConcreteYear from './domain/model/year';
 import translator from './misc/translator';
+import DomainDate from './domain/model/date';
 
 class App extends Component {
   state = {
     month: (new Date()).getMonth(),
-    year: (new Date()).getFullYear()
+    year: (new Date()).getFullYear(),
+    hollydays: []
   }
 
   previousMonth() {
@@ -29,6 +31,15 @@ class App extends Component {
     this.setState(nextState);
   }
 
+  toggleHollyday(dateToToggle: DomainDate) {
+    const newHollydays = this.state.hollydays.filter((date: DomainDate) => !date.equals(dateToToggle));
+    if (newHollydays.length !== this.state.hollydays.length) {
+      this.setState({hollydays: newHollydays});
+    } else {
+      this.setState({hollydays: [...newHollydays, dateToToggle]});
+    }
+  }
+
   render() {
     const month = ConcreteMonth.create(this.state.month);
     const year = ConcreteYear.create(this.state.year);
@@ -43,7 +54,7 @@ class App extends Component {
         </div>
         <div className="Page">
           <h1 className="Page-title">{date.toLocaleDateString(navigator.language, { year: 'numeric', month: 'long'})}</h1>
-          <Calendar month={month} year={year}/>
+          <Calendar month={month} year={year} hollydays={this.state.hollydays} onDateClick={this.toggleHollyday.bind(this)}/>
         </div>
       </div>
     );

@@ -25,4 +25,8 @@ export default class ConcreteMonth {
   numberValue(): number {
     return this.month as number;
   }
+
+  equals(month: ConcreteMonth): boolean {
+    return this.month === month.month;
+  }
 }

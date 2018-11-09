@@ -16,4 +16,8 @@ export default class ConcreteYear {
   numberValue(): number {
     return this.year as number;
   }
+
+  equals(year: ConcreteYear): boolean {
+    return this.year === year.year;
+  }
 }

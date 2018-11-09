@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import Month from '../../domain/model/month';
 import Year from '../../domain/model/year';
-import {Day} from '../../domain/model/day';
+import DomainDate from '../../domain/model/date';
+import ConcreteDay, {Day} from '../../domain/model/day';
 
 type Props = {
   month: Month,
   year: Year,
+  hollydays: DomainDate[],
+  onDateClick: (date: DomainDate) => void,
 }
 
 class Calendar extends Component<Props> {
   render() {
-    const {month, year} = this.props;
+    const {month, year, hollydays, onDateClick} = this.props;
     const colors = {
       [Day.Sunday as number]: '#ffffff',
       [Day.Monday as number]: '#eeeeee',
@@ -23,10 +26,18 @@ class Calendar extends Component<Props> {
     const numberOfDays = new Date(year.numberValue(), month.numberValue() + 1, 0).getDate();
 
     const views = Array.from(Array(numberOfDays).keys()).map((dayOfMonth: number) => {
-      const date = new Date(year.numberValue(), month.numberValue(), dayOfMonth + 1);
+      const day = ConcreteDay.create(dayOfMonth + 1);
+      const date = DomainDate.create(year, month, day);
 
-      return <div key={date.getDate()} className="Day" style={{backgroundColor: colors[date.getDay()]}}>
-        {date.getDate()}
+      return <div
+          key={date.dateValue().getDate()}
+          className={`Day ${hollydays.some((hollyday: DomainDate) => hollyday.equals(date)) ? 'Day--hollyday' : ''}`}
+          style={{backgroundColor: colors[date.dateValue().getDay()]}}
+          onClick={() => {
+            onDateClick(DomainDate.create(year, month, day));
+          }}
+        >
+        {date.dateValue().getDate()}
       </div>
     })
 
