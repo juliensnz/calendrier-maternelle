@@ -1,5 +1,5 @@
 display date on top [DONE]
 print button [DONE]
 select date [DONE]
-add vacations
-birthday
+add vacations [DONE]
+birthday [Will not do]
